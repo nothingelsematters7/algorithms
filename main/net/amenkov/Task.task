@@ -1,0 +1,21 @@
+4 Task
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+0
+16 main/net/amenkov
+8 -Xmx256M
+4 Main
+16 net.amenkov.Task
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2015.05.27
+30 Codeforces Round #305 (Div. 1)
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+0
