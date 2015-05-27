@@ -40,7 +40,7 @@ public class SegmentTreeTest {
 
         tree.update(2, 5);
 
-        Assert.assertEquals(8, tree.sum(1, 3));
+        Assert.assertEquals(7, tree.sum(1, 3));
         Assert.assertEquals(2, tree.sum(0, 1));
         Assert.assertEquals(2, tree.sum(3, 4));
     }
