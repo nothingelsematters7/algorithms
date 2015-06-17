@@ -1,4 +1,4 @@
-package net.menkov.algorithms.datastructures;
+package net.amenkov.algorithms.datastructures;
 
 /**
  * Created by dev_il on 27.05.15.

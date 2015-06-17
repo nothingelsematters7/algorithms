@@ -1,31 +1,13 @@
-import java.io.IOException;
-import java.io.InputStreamReader;
+package net.amenkov;
+
+import net.amenkov.utils.Pair;
+import net.amenkov.utils.io.FastScanner;
+
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.io.BufferedReader;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.StringTokenizer;
-import java.io.InputStream;
 
-/**
- * Built using CHelper plug-in
- * Actual solution is at the top
- * @author Andrey Menkov (nothingelsematters7@gmail.com)
- */
-public class Main {
-	public static void main(String[] args) {
-		InputStream inputStream = System.in;
-		OutputStream outputStream = System.out;
-		FastScanner in = new FastScanner(inputStream);
-		PrintWriter out = new PrintWriter(outputStream);
-		TaskE solver = new TaskE();
-		solver.solve(1, in, out);
-		out.close();
-	}
-}
-
-class TaskE {
+public class TaskE {
     Pair<Long, Integer>[] a;
     long[] sum;
     int[] index;
@@ -35,6 +17,7 @@ class TaskE {
         to = Math.min(to, n);
         if (from > to) return;
         Arrays.sort(a, from, Math.min(to, n), new Comparator<Pair<Long, Integer>>() {
+            @Override
             public int compare(Pair<Long, Integer> o1, Pair<Long, Integer> o2) {
                 return o1.first.compareTo(o2.first);
             }
@@ -55,6 +38,7 @@ class TaskE {
         return Arrays.binarySearch(a, from, to,
                 new Pair<>(toFind, 0),
                 new Comparator<Pair<Long, Integer>>() {
+                    @Override
                     public int compare(Pair<Long, Integer> o1, Pair<Long, Integer> o2) {
                         return o1.first.compareTo(o2.first);
                     }
@@ -84,7 +68,7 @@ class TaskE {
 
         for (int i = 0; i < q; i++) {
             int type = in.nextInt();
-            if (type == 1) {
+            if (type == 1) { // update
                 int l = in.nextInt() - 1, r = in.nextInt() - 1, x = in.nextInt();
                 for (int j = l; j <= r;) {
                     if (j % len == 0 && j + len - 1 <= r) {
@@ -101,10 +85,10 @@ class TaskE {
                         ++j;
                     }
                 }
-            } else {
+            } else { // get
                 int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
                 long y = in.nextLong();
-                for (int j = 0; j < len; j++) {
+                for (int j = 0; j < len; j++) { // iterate blocks
                     long toFind = y - sum[j];
                     int ind = search(len, j, toFind);
 
@@ -136,60 +120,3 @@ class TaskE {
 
     }
 }
-
-class Pair<T extends Number & Comparable<T>, S extends Number & Comparable<S>>
-        implements Comparable<Pair> {
-    public T first;
-    public S second;
-
-    public Pair(T first, S second) {
-        this.first = first;
-        this.second = second;
-    }
-
-    public int compareTo(Pair o) {
-        if (this.first.equals(o.first)) {
-            return second.compareTo((S) o.second);
-        }
-
-        return first.compareTo((T) o.first);
-    }
-}
-
-class FastScanner {
-    BufferedReader br;
-    StringTokenizer st;
-
-    public FastScanner(InputStream in) {
-        br = new BufferedReader(new InputStreamReader(in));
-    }
-
-    public String next() {
-        while (st == null || !st.hasMoreTokens()) {
-            try {
-                st = new StringTokenizer(br.readLine());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return st.nextToken();
-    }
-
-    public int nextInt() {
-        return Integer.parseInt(next());
-    }
-
-    public long nextLong() {
-        return Long.parseLong(next());
-    }
-
-    public long[] readLongArray(int n) {
-        long[] ar = new long[n];
-        for (int i = 0; i < n; i++) {
-            ar[i] = nextLong();
-        }
-
-        return ar;
-    }
-}
-

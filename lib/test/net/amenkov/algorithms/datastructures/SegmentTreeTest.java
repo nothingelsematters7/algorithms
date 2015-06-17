@@ -1,4 +1,4 @@
-package net.menkov.algorithms.datastructures;
+package net.amenkov.algorithms.datastructures;
 
 import org.junit.Assert;
 import org.junit.Test;
